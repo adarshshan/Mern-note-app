@@ -3,15 +3,14 @@ import './MyNotes.css'
 import MainScreen from '../../Components/MainScreen'
 import { Accordion, Badge, Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import notes from '../../data/note'
 import axios from 'axios'
 
 
 const MyNotes = () => {
-    const [state, setState] = useState([])
+    const [notes, setNotes] = useState([])
     const fetchNotes = async () => {
-        const data = await axios.get('/api/notes');
-        setState(data);
+        const { data } = await axios.get('/api/notes');
+        setNotes(data);
         console.log(data)
     }
     useEffect(() => {
@@ -31,7 +30,7 @@ const MyNotes = () => {
                 {
                     notes.map((note) => {
                         return (
-                            <Accordion>
+                            <Accordion key={note._id}>
                                 <Accordion.Item eventKey='0'>
                                     <Card style={{ margin: 10 }}>
                                         <Card.Header style={{ display: 'flex' }}>

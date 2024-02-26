@@ -1,9 +1,11 @@
 const express = require('express')
 const notes = require('./data/note')
 const dotenv = require('dotenv');
+const connectDb = require('./config/db')
 
 const app = express();
 dotenv.config();
+connectDb();
 
 
 app.get('/', (req, res) => {
