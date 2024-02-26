@@ -1,11 +1,22 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Footer from './Components/Footer/Footer';
+import Header from './Components/Header/Header';
+import LandingPage from './screens/LandingPage/LandingPage';
+import MyNotes from './screens/MyNotes/MyNotes.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hellow world</h1>
-    
-    </div>
+    <>
+      <Header />
+      <main>
+        <Routes>
+          <Route path='/' element={<LandingPage />} exact />
+          <Route path='/mynotes' element={<MyNotes />} />
+        </Routes>
+      </main>
+      <Footer />
+    </>
   );
 }
 

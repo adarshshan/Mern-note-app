@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 })
 app.get('/api/notes', (req, res) => {
     try {
+        // console.log(notes)
         res.json(notes);
     } catch (error) {
         console.log(error)
@@ -25,5 +26,5 @@ app.get('/api/notes/:id/', (req, res) => {
     res.send(note);
 })
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => console.log('server started on http://localhost:5500'));
