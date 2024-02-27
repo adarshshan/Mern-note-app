@@ -7,10 +7,20 @@ import {
     Navbar,
     NavDropdown,
 } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { USER_LOGOUT } from "../../constants/userConstants";
+import { logout } from "../../actions/userActions";
 
 function Header() {
+    const dispatch = useDispatch();
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
     const navigate = useNavigate();
+    const logoutHandler = () => {
+        dispatch(logout());
+        navigate('/');
+    }
     return (
         <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
             <Container>
@@ -35,10 +45,7 @@ function Header() {
                             </NavDropdown.Item>
 
                             <NavDropdown.Divider />
-                            <NavDropdown.Item onClick={() => {
-                                localStorage.removeItem("userInfo")
-                                navigate('/');
-                            }} >
+                            <NavDropdown.Item onClick={logoutHandler} >
                                 Logout
                             </NavDropdown.Item>
                         </NavDropdown>

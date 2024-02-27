@@ -6,33 +6,30 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Loading from '../../Components/Loading';
 import ErrorMessage from '../../Components/ErrorMessage';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../actions/userActions';
 
 function LoginScreen() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
-   
+
+    const dispatch = useDispatch();
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { loading, error, userInfo } = userLogin;
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate('/');
+        }
+    }, [userInfo]);
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        try {
-            const config = {
-                headers: {
-                    "Content-type": "application/json",
-                }
-            }
-            setLoading(true)
-            const { data } = await axios.post('/api/users/login', { email, password }, config);
-            console.log(data);
-            localStorage.setItem('userInfo', JSON.stringify(data))
-            setError(false);
-            setLoading(false)
-        } catch (error) {
-            console.log(error)
-            setError(error.response.data.message)
-            setLoading(false)
-        }
+        dispatch(login(email, password));
+        navigate('/mynotes');
     }
     return (
         <>
