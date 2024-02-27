@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './LoginScreen.css';
 import MainScreen from '../../Components/MainScreen'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Loading from '../../Components/Loading';
 import ErrorMessage from '../../Components/ErrorMessage';
@@ -12,6 +12,8 @@ function LoginScreen() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+   
+
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
@@ -24,6 +26,7 @@ function LoginScreen() {
             const { data } = await axios.post('/api/users/login', { email, password }, config);
             console.log(data);
             localStorage.setItem('userInfo', JSON.stringify(data))
+            setError(false);
             setLoading(false)
         } catch (error) {
             console.log(error)

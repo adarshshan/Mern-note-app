@@ -1,4 +1,4 @@
-
+import React from "react";
 import {
     Container,
     Form,
@@ -7,9 +7,10 @@ import {
     Navbar,
     NavDropdown,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+    const navigate = useNavigate();
     return (
         <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
             <Container>
@@ -30,11 +31,14 @@ function Header() {
                         <Nav.Link> <Link to='/mynotes'>My Notes</Link></Nav.Link>
                         <NavDropdown title='Adarsh' id="collasible-nav-dropdown" >
                             <NavDropdown.Item href="/profile">
-                                My Profile
+                                <Link to='/profile'>My Profile</Link>
                             </NavDropdown.Item>
 
                             <NavDropdown.Divider />
-                            <NavDropdown.Item >
+                            <NavDropdown.Item onClick={() => {
+                                localStorage.removeItem("userInfo")
+                                navigate('/');
+                            }} >
                                 Logout
                             </NavDropdown.Item>
                         </NavDropdown>
