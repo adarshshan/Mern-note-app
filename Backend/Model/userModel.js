@@ -16,11 +16,6 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        isAdmin: {
-            type: Boolean,
-            required: true,
-            default: false,
-        },
         pic: {
             type: String,
             required: true,
@@ -41,11 +36,7 @@ userSchema.pre("save", async function (next) {
     this.password = await bcrypt.hash(this.password, salt);
 })
 userSchema.methods.matchPassword = async function (enteredPassword) {
-    console.log('the password is ' + this.password)
-    console.log(enteredPassword);
-    const result = await bcrypt.compare(enteredPassword, this.password);
-    console.log(result)
-    return result;
+    return await bcrypt.compare(enteredPassword, this.password);
 }
 
 
