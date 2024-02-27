@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const connectDb = require('./config/db')
 
 const userRoutes = require('./Routes/userRouter');
+const noteRoutes = require('./Routes/noteRoutes');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 
 const app = express();
@@ -19,10 +20,9 @@ app.get('/', (req, res) => {
         console.log(error);
     }
 })
-app.get('/api/notes', (req, res) => {
-    res.json(notes);
-})
-app.use('/api/users', userRoutes)
+
+app.use('/api/users', userRoutes);
+app.use('/api/notes', noteRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

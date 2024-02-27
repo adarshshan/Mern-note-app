@@ -9,9 +9,14 @@ import axios from 'axios'
 const MyNotes = () => {
     const [notes, setNotes] = useState([])
     const fetchNotes = async () => {
-        const { data } = await axios.get('/api/notes');
-        setNotes(data);
-        console.log(data)
+        try {
+            const { data } = await axios.get('api/notes');
+            setNotes(data);
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+            console.log(`error is here`)
+        }
     }
     useEffect(() => {
         fetchNotes();

@@ -9,7 +9,9 @@ import {
     USER_REGISTER_SUCCESS
 } from "../constants/userConstants"
 
-export const login = (email, password) => {
+
+
+const login = (email, password) => {
     return async (dispatch) => {
         try {
             dispatch({ type: USER_LOGIN_REQUEST });
@@ -35,9 +37,9 @@ export const login = (email, password) => {
         }
     }
 }
-export const register = (name, email, password, pic) => async (dispatch) => {
+
+const register = (name, email, password, pic) => async (dispatch) => {
     try {
-        // if(password!==confirmPassword) 
         dispatch({ type: USER_REGISTER_REQUEST });
         const config = {
             headers: {
@@ -62,7 +64,13 @@ export const register = (name, email, password, pic) => async (dispatch) => {
     }
 }
 
-export const logout = () => async (dispatch) => {
+const logout = () => async (dispatch) => {
     localStorage.removeItem("userInfo");
     dispatch({ type: USER_LOGOUT });
+}
+
+export {
+    login,
+    register,
+    logout
 }

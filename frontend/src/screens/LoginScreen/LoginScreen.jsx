@@ -10,12 +10,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions/userActions';
 
 function LoginScreen() {
-    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
+    const dispatch = useDispatch();
     const userLogin = useSelector((state) => state.userLogin);
     const { loading, error, userInfo } = userLogin;
 
@@ -27,10 +27,15 @@ function LoginScreen() {
 
 
     const submitHandler = async (e) => {
-        e.preventDefault();
-        dispatch(login(email, password));
-        navigate('/mynotes');
+        try {
+            e.preventDefault();
+            dispatch(login(email, password));
+            navigate('/mynotes');
+        } catch (error) {
+            console.log(error)
+        }
     }
+
     return (
         <>
             <MainScreen title='Login'>
