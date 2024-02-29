@@ -30,7 +30,7 @@ function LoginScreen() {
         try {
             e.preventDefault();
             dispatch(login(email, password));
-            navigate('/mynotes');
+            // navigate('/mynotes');
         } catch (error) {
             console.log(error)
         }
