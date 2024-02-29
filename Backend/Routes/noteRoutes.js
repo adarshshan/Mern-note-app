@@ -14,7 +14,7 @@ const { protect } = require('../middlewares/authMiddleware');
 // router.route('/:id').get().put().delete();
 router.get('/', protect, getNotes)
 router.post('/create', protect, createNote);
-router.get('/:id', protect, getNoteById)
+router.get('/:id', getNoteById)
     .put('/:id', protect, updateNote)
     .delete('/:id',protect,deleteNote);
 

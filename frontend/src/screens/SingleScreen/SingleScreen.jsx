@@ -1,24 +1,39 @@
-import React, { useState } from 'react'
-import MainScreen from '../../Components/MainScreen'
-import { Button, Card, Container, Form } from 'react-bootstrap'
-import ErrorMessage from '../../Components/ErrorMessage'
-import ReactMarkdown from 'react-markdown'
-import Loading from '../../Components/Loading'
-import { useDispatch, useSelector } from 'react-redux'
-import { NOTES_CREATE_REQUEST } from '../../constants/noteConstants'
-import { createNote } from '../../actions/noteActions'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import MainScreen from '../../Components/MainScreen';
+import { Button, Card, Container, Form } from 'react-bootstrap';
+import ErrorMessage from '../../Components/ErrorMessage';
+import ReactMarkdown from 'react-markdown';
+import Loading from '../../Components/Loading';
+import { updateNote } from '../../actions/noteActions';
+import axios from 'axios';
 
-function CreateNote() {
+function SingleScreen() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
+    const [date, setDate] = useState('');
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        const fetching = async () => {
+            const { data } = await axios.get(`/api/notes/${id}`);
+            console.log(data);
+            setTitle(data.title);
+            setContent(data.content);
+            setCategory(data.category);
+            setDate(data.updatedAt);
+        }
+        fetching();
+    }, [id, date]);
 
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const noteCreate = useSelector(state => state.noteCreate);
-    const { loading, success, error } = noteCreate;
+    const noteUpdate = useSelector(state => state.noteUpdate);
+    const { loading, error } = noteUpdate;
 
 
 
@@ -26,7 +41,7 @@ function CreateNote() {
         e.preventDefault();
         try {
             if (!title || !category || !content) return;
-            dispatch(createNote(title, category, content));
+            dispatch(updateNote(title, category, content));
             resetHandler();
             navigate('/mynotes')
         } catch (error) {
@@ -40,13 +55,13 @@ function CreateNote() {
         setCategory("");
     }
     return (
-        <MainScreen title='Create a Note'>
+        <MainScreen title='Edit note'>
             <Container className='px-5 shadow'>
                 <Card className='shadow'>
                     <Card.Header>Create a new Note</Card.Header>
                     <Card.Body>
                         <Form onSubmit={submitHandler}>
-                            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                            {/* {error && <ErrorMessage variant="danger">{error}</ErrorMessage>} */}
                             <Form.Group controlId="title">
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control
@@ -85,10 +100,10 @@ function CreateNote() {
                                     onChange={(e) => setCategory(e.target.value)}
                                 />
                             </Form.Group>
-                            {loading && success && <Loading size={50} />}
+                            {/* {loading && success && <Loading size={50} />} */}
                             <div className='mt-3'>
                                 <Button type="submit" variant="primary">
-                                    Create Note
+                                    Save Changes
                                 </Button>
                                 <Button className="mx-2" onClick={resetHandler} variant="danger">
                                     Reset Feilds
@@ -98,7 +113,7 @@ function CreateNote() {
                     </Card.Body>
 
                     <Card.Footer className="text-muted">
-                        Creating on - {new Date().toLocaleDateString()}
+                        Creating on - {date.toString().substring(0, 10)}
                     </Card.Footer>
                 </Card>
             </Container>
@@ -106,4 +121,4 @@ function CreateNote() {
     )
 }
 
-export default CreateNote;
+export default SingleScreen;

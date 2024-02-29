@@ -15,12 +15,14 @@ const MyNotes = () => {
     const dispatch = useDispatch()
     const noteList = useSelector((state) => state.noteList);
     const userLogin = useSelector((state) => state.userLogin);
+    const noteCreate = useSelector((state) => state.noteCreate);
     const { loading, notes, error } = noteList;
     const { userInfo } = userLogin;
+    const { success: successCreate } = noteCreate;
     useLayoutEffect(() => {
         dispatch(listNotes());
         if (!userInfo) navigate('/');
-    }, [dispatch]);
+    }, [dispatch, userInfo, successCreate, deleteNote]);
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure ?')) {
             dispatch(deleteNote(id))
@@ -29,13 +31,13 @@ const MyNotes = () => {
     return (
         <>
             <MainScreen title={`Welcome back ${userInfo?.name}`} >
-                <Link to='createnote'>
+                <Link to='/createnote'>
                     <Button style={{ marginLeft: 10, marginBottom: 6 }} size='lg'>Create New Note</Button>
                 </Link>
                 {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
                 {loading && <Loading />}
                 {
-                    notes?.map((note) => {
+                    notes?.reverse().map((note) => {
                         return (
                             <Accordion key={note._id}>
                                 <Accordion.Item eventKey='0'>

@@ -7,6 +7,7 @@ import MyNotes from './screens/MyNotes/MyNotes.jsx';
 import LoginScreen from './screens/LoginScreen/LoginScreen.jsx';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen.jsx';
 import CreateNote from './screens/CreateNote/CreateNote.jsx';
+import SingleScreen from './screens/SingleScreen/SingleScreen.jsx';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/login' element={<LoginScreen />} />
           <Route path='/register' element={<RegisterScreen />} />
           <Route path='/createnote' element={<CreateNote />} />
+          <Route path='/note/:id' element={<SingleScreen />} />
           <Route path='/mynotes' element={<MyNotes />} />
         </Routes>
       </main>

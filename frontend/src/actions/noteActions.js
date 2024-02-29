@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NOTES_CREATE_FAIL, NOTES_CREATE_REQUEST, NOTES_CREATE_SUCCESS, NOTES_DELETE_FAIL, NOTES_DELETE_REQUEST, NOTES_DELETE_SUCCESS, NOTES_LIST_FAIL, NOTES_LIST_REQUEST, NOTES_LIST_SUCCESS } from "../constants/noteConstants";
+import { NOTES_CREATE_FAIL, NOTES_CREATE_REQUEST, NOTES_CREATE_SUCCESS, NOTES_DELETE_FAIL, NOTES_DELETE_REQUEST, NOTES_DELETE_SUCCESS, NOTES_LIST_FAIL, NOTES_LIST_REQUEST, NOTES_LIST_SUCCESS, NOTES_UPDATE_FAIL, NOTES_UPDATE_REQUEST, NOTES_UPDATE_SUCCESS } from "../constants/noteConstants";
 
 
 const listNotes = () => async (dispatch, getState) => {
@@ -41,6 +41,31 @@ const createNote = (title, category, content) => async (dispatch, getState) => {
         console.log(error)
     }
 }
+const updateNote = (id, title, content, category) => (dispatch, getState) => {
+    try {
+        dispatch({ type: NOTES_UPDATE_REQUEST });
+        const { userLogin: { userInfo } } = getState();
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userInfo?.token}`
+            }
+        }
+        const { data } = axios.put(`/api/notes/${id}`, { title, category, content }, config);
+        dispatch({
+            type: NOTES_UPDATE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        const message = error.response && error.response.data.message
+            ? error.response.data.message : error.message;
+        dispatch({
+            type: NOTES_UPDATE_FAIL,
+            payload: message
+        });
+        console.log(error)
+    }
+}
 const deleteNote = (id) => async (dispatch, getState) => {
     try {
         dispatch({ type: NOTES_DELETE_REQUEST });
@@ -64,5 +89,6 @@ const deleteNote = (id) => async (dispatch, getState) => {
 export {
     listNotes,
     deleteNote,
-    createNote
+    createNote,
+    updateNote
 }
