@@ -47,7 +47,8 @@ const noteDeleteReducer = (state = {}, action) => {
                 }
             case NOTES_DELETE_SUCCESS:
                 return {
-                    loading: false
+                    loading: false,
+                    success:true
                 }
             case NOTES_DELETE_FAIL:
                 return {

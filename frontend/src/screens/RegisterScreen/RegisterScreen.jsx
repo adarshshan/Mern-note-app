@@ -66,7 +66,7 @@ function RegisterScreen() {
     return (
         <>
             <MainScreen title='REGISTER' >
-                <div className="loginContainer">
+                <div className="loginContainer container w-50 m-auto shadow">
                     {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                     {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
                     {loading && <Loading />}
@@ -121,22 +121,15 @@ function RegisterScreen() {
                                 onChange={(e) => postDetails(e.target.files[0])}
                                 label="upload Profile Picture"
                                 custom />
-                            {/* <FormFile
-                                // onChange={(e) => postDetails(e.target.files[0])}
-                                id="custom-file"
-                                type="image/png"
-                                label="Upload Profile Picture"
-                                custom
-                            /> */}
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary mt-2" type="submit">
                             Register
                         </Button>
                     </Form>
                     <Row className="py-3">
                         <Col>
-                            Have an Account ? <Link to="/login">Login</Link>
+                            Have an Account ? <Link to="/login" className='text-primary'>Login</Link>
                         </Col>
                     </Row>
                 </div>

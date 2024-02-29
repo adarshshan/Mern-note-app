@@ -9,10 +9,10 @@
   width: 100%;
 }
 .heading {
-  font-size: 60px;
-  /* font-family: "Ubuntu", sans-serif; */
-  font-family: "Work Sans", sans-serif;
+  /* font-family: "Work Sans", sans-serif; */
   padding: 5px 10px;
+  text-align: center;
+
 }
 
 @media only screen and (min-width: 1200px) {

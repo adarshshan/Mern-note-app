@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { USER_LOGOUT } from "../../constants/userConstants";
 import { logout } from "../../actions/userActions";
 
-function Header() {
+function Header({ setSearch }) {
     const dispatch = useDispatch();
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
@@ -38,12 +38,13 @@ function Header() {
                                 type="text"
                                 placeholder="Search"
                                 className="mr-sm-2"
+                                onChange={(e) => setSearch(e.target.value)}
                             />
                         </Form>
                     </Nav>
                     <Nav>
                         <Nav.Link> <Link to='/mynotes'>My Notes</Link></Nav.Link>
-                        <NavDropdown title='Adarsh' id="collasible-nav-dropdown" >
+                        <NavDropdown title={userInfo?.name} id="collasible-nav-dropdown" >
                             <NavDropdown.Item href="/profile">
                                 <Link to='/profile'>My Profile</Link>
                             </NavDropdown.Item>

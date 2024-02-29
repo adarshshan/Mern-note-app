@@ -40,7 +40,7 @@ function LoginScreen() {
         <>
             <MainScreen title='Login'>
                 <Container>
-                    <div className="loginContainer">
+                    <div className="loginContainer container w-50 m-auto shadow">
                         {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
                         {loading && <Loading />}
                         <Form onSubmit={submitHandler}>
@@ -64,13 +64,13 @@ function LoginScreen() {
                                 />
                             </Form.Group>
 
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary mt-2" type="submit">
                                 Submit
                             </Button>
                         </Form>
                         <Row className="py-3">
                             <Col>
-                                New Customer ? <Link to="/register">Register Here</Link>
+                                New Customer ? <Link to="/register" className='text-primary'>Register Here</Link>
                             </Col>
                         </Row>
                     </div>

@@ -33,7 +33,7 @@ function SingleScreen() {
 
     const dispatch = useDispatch();
     const noteUpdate = useSelector(state => state.noteUpdate);
-    const { loading, error } = noteUpdate;
+    const { loading, success, error } = noteUpdate;
 
 
 
@@ -41,7 +41,7 @@ function SingleScreen() {
         e.preventDefault();
         try {
             if (!title || !category || !content) return;
-            dispatch(updateNote(title, category, content));
+            dispatch(updateNote(id, title, category, content));
             resetHandler();
             navigate('/mynotes')
         } catch (error) {
@@ -61,7 +61,7 @@ function SingleScreen() {
                     <Card.Header>Create a new Note</Card.Header>
                     <Card.Body>
                         <Form onSubmit={submitHandler}>
-                            {/* {error && <ErrorMessage variant="danger">{error}</ErrorMessage>} */}
+                            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                             <Form.Group controlId="title">
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control
@@ -100,7 +100,7 @@ function SingleScreen() {
                                     onChange={(e) => setCategory(e.target.value)}
                                 />
                             </Form.Group>
-                            {/* {loading && success && <Loading size={50} />} */}
+                            {loading && success && <Loading size={50} />}
                             <div className='mt-3'>
                                 <Button type="submit" variant="primary">
                                     Save Changes
