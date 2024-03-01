@@ -12,6 +12,9 @@ import { useState } from 'react';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen.jsx';
 import ErrorPage from './screens/ErrorPage/ErrorPage.jsx';
 import ProProfile from './screens/ProfileScreen/ProProfile.jsx';
+import SetPassword from './screens/ProfileScreen/SetPassword.jsx';
+import SetPic from './screens/ProfileScreen/SetPic.jsx';
+import SetDetail from './screens/ProfileScreen/SetDetail.jsx';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -24,6 +27,9 @@ function App() {
           <Route path='/login' element={<LoginScreen />} />
           {/* <Route path='/profile' element={<ProfileScreen />} /> */}
           <Route path='/profile' element={<ProProfile />} />
+          <Route path='new-password' element={<SetPassword />} />
+          <Route path='update-image' element={<SetPic />} />
+          <Route path='update-name-email' element={<SetDetail />} />
           <Route path='/register' element={<RegisterScreen />} />
           <Route path='/createnote' element={<CreateNote />} />
           <Route path='/note/:id' element={<SingleScreen />} />

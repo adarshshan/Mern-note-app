@@ -28,7 +28,7 @@ function Header({ setSearch }) {
     return (
         <Navbar collapseOnSelect expand="lg" bg="primary" className="header-cute" variant="dark">
             <Container>
-                <Navbar.Brand> <Link to='/'>Note Zipper</Link></Navbar.Brand>
+                <Navbar.Brand className="fs-2"> <Link to='/'>My <span className="text-dark fw-bold">Note</span></Link></Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">

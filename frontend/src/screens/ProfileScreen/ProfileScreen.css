@@ -68,6 +68,7 @@ body {
 
 .img-radius {
     border-radius: 5px;
+    width: 100%;
 }
 
 
@@ -158,4 +159,5 @@ h6 {
     background: linear-gradient(to right, #ee5a6f, #f29263);
     color: white;
     margin-top: 20px;
+    width: 100%;
 }

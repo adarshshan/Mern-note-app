@@ -1,3 +1,7 @@
 .accordion .card-header button {
     border: none;
 }
+
+.create-btn {
+    background: linear-gradient(to right, #ee5a6f, #f29263);
+}

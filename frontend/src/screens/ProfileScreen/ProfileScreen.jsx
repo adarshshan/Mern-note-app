@@ -121,9 +121,9 @@ function ProfileScreen() {
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
-                            {/* {picMessage && (
+                            {picMessage && (
                                 <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-                            )} */}
+                            )}
                             <Form.Group controlId="pic">
                                 <Form.Label>Change Profile Picture</Form.Label>
                                 <Form.Control id="custom-file"

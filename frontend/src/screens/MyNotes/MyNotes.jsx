@@ -37,9 +37,9 @@ const MyNotes = ({ search }) => {
     }
     return (
         <>
-            <MainScreen title={`Welcome back ${userInfo?.name}`} >
+            <MainScreen title={`Welcome back ${userInfo?.name}`} className='px-5 mx-5 shadow'>
                 <Link to='/createnote'>
-                    <Button style={{ marginLeft: 10, marginBottom: 6 }} size='lg'>Create New Note</Button>
+                    <Button className='create-btn' style={{ marginLeft: 10, marginBottom: 6 }} size='lg'>Create New Note</Button>
                 </Link>
                 {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
                 {loading && <Loading />}
@@ -64,7 +64,7 @@ const MyNotes = ({ search }) => {
                                                 </span>
 
                                                 <div>
-                                                    <Button><Link to={`/note/${note._id}`}><FiEdit /></Link></Button>
+                                                    <Button className='create-btn'><Link to={`/note/${note._id}`}><FiEdit /></Link></Button>
                                                     <Button onClick={() => deleteHandler(note._id)} variant='danger' className='mx-2'>
                                                         <AiOutlineDelete />
                                                     </Button>
