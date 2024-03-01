@@ -9,6 +9,9 @@ import RegisterScreen from './screens/RegisterScreen/RegisterScreen.jsx';
 import CreateNote from './screens/CreateNote/CreateNote.jsx';
 import SingleScreen from './screens/SingleScreen/SingleScreen.jsx';
 import { useState } from 'react';
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen.jsx';
+import ErrorPage from './screens/ErrorPage/ErrorPage.jsx';
+import ProProfile from './screens/ProfileScreen/ProProfile.jsx';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -19,10 +22,13 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />} exact />
           <Route path='/login' element={<LoginScreen />} />
+          {/* <Route path='/profile' element={<ProfileScreen />} /> */}
+          <Route path='/profile' element={<ProProfile />} />
           <Route path='/register' element={<RegisterScreen />} />
           <Route path='/createnote' element={<CreateNote />} />
           <Route path='/note/:id' element={<SingleScreen />} />
           <Route path='/mynotes' element={<MyNotes search={search} />} />
+          <Route path='/*' element={<ErrorPage />} />
         </Routes>
       </main>
       <Footer />

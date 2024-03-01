@@ -1,4 +1,5 @@
 import React from "react";
+import './Header.css'
 import {
     Container,
     Form,
@@ -9,7 +10,6 @@ import {
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { USER_LOGOUT } from "../../constants/userConstants";
 import { logout } from "../../actions/userActions";
 
 function Header({ setSearch }) {
@@ -26,7 +26,7 @@ function Header({ setSearch }) {
         }
     }
     return (
-        <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="primary" className="header-cute" variant="dark">
             <Container>
                 <Navbar.Brand> <Link to='/'>Note Zipper</Link></Navbar.Brand>
 
@@ -42,19 +42,22 @@ function Header({ setSearch }) {
                             />
                         </Form>
                     </Nav>
-                    <Nav>
-                        <Nav.Link> <Link to='/mynotes'>My Notes</Link></Nav.Link>
-                        <NavDropdown title={userInfo?.name} id="collasible-nav-dropdown" >
-                            <NavDropdown.Item href="/profile">
-                                <Link to='/profile'>My Profile</Link>
-                            </NavDropdown.Item>
+                    {
+                        userInfo ? (<Nav>
+                            <Nav.Link> <Link to='/mynotes'>My Notes</Link></Nav.Link>
+                            <NavDropdown title={userInfo?.name} id="collasible-nav-dropdown" >
+                                <NavDropdown.Item href="/profile">
+                                    <Link to='/profile'>My Profile</Link>
+                                </NavDropdown.Item>
 
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item onClick={logoutHandler} >
-                                Logout
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={logoutHandler} >
+                                    Logout
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>) : (<Nav><Nav.Link><Link to='/login'>Login</Link></Nav.Link></Nav>)
+                    }
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>
