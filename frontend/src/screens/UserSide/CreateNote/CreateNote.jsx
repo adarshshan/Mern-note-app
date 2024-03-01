@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import MainScreen from '../../Components/MainScreen'
+import MainScreen from '../../../Components/MainScreen'
 import { Button, Card, Container, Form } from 'react-bootstrap'
-import ErrorMessage from '../../Components/ErrorMessage'
+import ErrorMessage from '../../../Components/ErrorMessage'
 import ReactMarkdown from 'react-markdown'
-import Loading from '../../Components/Loading'
+import Loading from '../../../Components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
-import { NOTES_CREATE_REQUEST } from '../../constants/noteConstants'
-import { createNote } from '../../actions/noteActions'
+import { NOTES_CREATE_REQUEST } from '../../../constants/noteConstants'
+import { createNote } from '../../../actions/noteActions'
 import { useNavigate } from 'react-router-dom'
 
 function CreateNote() {

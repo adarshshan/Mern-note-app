@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const userRoutes = require('./Routes/userRouter');
 const noteRoutes = require('./Routes/noteRoutes');
+const adminRoutes = require('./Routes/adminRoutes');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 
 const app = express();
@@ -21,6 +22,7 @@ connectDb();
 
 app.use('/api/users', userRoutes);
 app.use('/api/notes', noteRoutes);
+app.use('/api/admin', adminRoutes);
 
 
 

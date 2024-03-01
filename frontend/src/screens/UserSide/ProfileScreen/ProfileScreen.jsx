@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import MainScreen from '../../Components/MainScreen'
+import MainScreen from '../../../Components/MainScreen';
 import { Col, Row, Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import ErrorMessage from '../../Components/ErrorMessage';
-import Loading from '../../Components/Loading';
+import ErrorMessage from '../../../Components/ErrorMessage';
+import Loading from '../../../Components/Loading';
 import { useNavigate } from 'react-router-dom';
-import { updateProfile } from '../../actions/userActions';
+import { updateProfile } from '../../../actions/userActions';
 
 function ProfileScreen() {
     const [name, setName] = useState('');

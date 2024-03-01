@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
-import MainScreen from '../../Components/MainScreen';
-import ErrorMessage from '../../Components/ErrorMessage'
-import Loading from '../../Components/Loading';
+import MainScreen from '../../../Components/MainScreen';
+import ErrorMessage from '../../../Components/ErrorMessage'
+import Loading from '../../../Components/Loading';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../actions/userActions';
+import { register } from '../../../actions/userActions';
 
 function RegisterScreen() {
     const [email, setEmail] = useState('');

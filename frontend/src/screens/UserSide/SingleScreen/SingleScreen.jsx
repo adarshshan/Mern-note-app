@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import MainScreen from '../../Components/MainScreen';
+import MainScreen from '../../../Components/MainScreen';
 import { Button, Card, Container, Form } from 'react-bootstrap';
-import ErrorMessage from '../../Components/ErrorMessage';
+import ErrorMessage from '../../../Components/ErrorMessage';
 import ReactMarkdown from 'react-markdown';
-import Loading from '../../Components/Loading';
-import { updateNote } from '../../actions/noteActions';
+import Loading from '../../../Components/Loading';
+import { updateNote } from '../../../actions/noteActions';
 import axios from 'axios';
 
 function SingleScreen() {

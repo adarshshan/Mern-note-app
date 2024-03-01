@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import MainScreen from '../../Components/MainScreen'
+import MainScreen from '../../../Components/MainScreen'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import ErrorMessage from '../../Components/ErrorMessage'
-import Loading from '../../Components/Loading'
+import ErrorMessage from '../../../Components/ErrorMessage'
+import Loading from '../../../Components/Loading'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { updateProfile } from '../../actions/userActions'
+import { updateProfile } from '../../../actions/userActions'
 
 function SetPic() {
     const [pic, setPic] = useState('');

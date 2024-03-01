@@ -5,5 +5,11 @@ const generateToken = (id) => {
         expiresIn: "30d",
     })
 }
+const generateTokenForAdmin = (id) => {
+    return jwt.sign({ id }, process.env.JWT_ADMIN_SECRET, { expiresIn: "30d" });
+}
 
-module.exports = generateToken;
+module.exports = {
+    generateToken,
+    generateTokenForAdmin
+};

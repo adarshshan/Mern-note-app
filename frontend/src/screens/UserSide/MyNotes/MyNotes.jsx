@@ -1,13 +1,13 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import './MyNotes.css'
-import MainScreen from '../../Components/MainScreen'
+import MainScreen from '../../../Components/MainScreen'
 import { Accordion, Badge, Button, Card } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteNote, listNotes } from '../../actions/noteActions'
-import Loading from '../../Components/Loading'
-import ErrorMessage from '../../Components/ErrorMessage'
+import { deleteNote, listNotes } from '../../../actions/noteActions'
+import Loading from '../../../Components/Loading'
+import ErrorMessage from '../../../Components/ErrorMessage'
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 

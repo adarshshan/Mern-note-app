@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import MainScreen from '../../Components/MainScreen'
+import MainScreen from '../../../Components/MainScreen'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import ErrorMessage from '../../Components/ErrorMessage'
-import Loading from '../../Components/Loading'
+import ErrorMessage from '../../../Components/ErrorMessage'
+import Loading from '../../../Components/Loading'
 import { useNavigate } from 'react-router-dom'
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux'
-import { updateProfile } from '../../actions/userActions'
+import { updateProfile } from '../../../actions/userActions'
 
 function SetPassword() {
     const [password, setPassword] = useState('');
