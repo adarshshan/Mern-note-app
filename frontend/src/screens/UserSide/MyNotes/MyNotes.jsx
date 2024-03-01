@@ -16,6 +16,7 @@ import { FiEdit } from "react-icons/fi";
 const MyNotes = ({ search }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
+    
     const noteList = useSelector((state) => state.noteList);
     const userLogin = useSelector((state) => state.userLogin);
     const noteCreate = useSelector((state) => state.noteCreate);

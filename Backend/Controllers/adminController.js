@@ -28,22 +28,21 @@ const registerAdmin = asyncHandler(async (req, res) => {
     }
 })
 const loginAdmin = asyncHandler(async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const admin = await Admin.findOne({ email });
-        if (admin && admin.matchPassword(password)) {
-            res.json({
-                _id: admin._id,
-                name: admin.name,
-                email: admin.email,
-                token: generateTokenForAdmin(admin._id)
-            })
-        } else {
-            res.status(400);
-            throw new Error('Invalid username or password!');
-        }
-    } catch (error) {
-        console.log(error);
+    const { email, password } = req.body;
+    const admin = await Admin.findOne({ email });
+    console.log(admin);
+    console.log(admin.matchPassword(password))
+    if (admin && (await admin.matchPassword(password))) {
+        console.log('hay')
+        res.json({
+            _id: admin._id,
+            name: admin.name,
+            email: admin.email,
+            token: generateTokenForAdmin(admin._id)
+        })
+    } else {
+        res.status(400);
+        throw new Error('Invalid username or password!');
     }
 })
 const getUserList = asyncHandler(async (req, res) => {
