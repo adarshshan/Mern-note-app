@@ -17,11 +17,12 @@ function AdminLoginScreen() {
 
     const dispatch = useDispatch();
     const adminLogin = useSelector((state) => state.adminLogin);
-    const { loading, error } = adminLogin;
+    const { loading, adminInfo, error } = adminLogin;
 
-    const adminInfo = localStorage.getItem("adminInfo");
 
-    useLayoutEffect(() => {
+
+    useEffect(() => {
+        const adminInfo = localStorage.getItem("adminInfo");
         if (adminInfo) {
             navigate('/get-list');
         }

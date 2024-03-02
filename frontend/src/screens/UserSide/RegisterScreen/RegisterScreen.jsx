@@ -24,9 +24,9 @@ function RegisterScreen() {
     const { loading, error, userInfo } = userRegister;
 
     useEffect(() => {
-        if (userInfo) {
-            navigate('/mynotes');
-        }
+        if (userInfo) navigate('/mynotes');
+        const user = localStorage.getItem("userInfo");
+        if (user) navigate('/mynotes');
     }, [userInfo]);
 
     const submitHandler = async (e) => {

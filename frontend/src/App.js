@@ -16,6 +16,7 @@ import SetPic from './screens/UserSide/ProfileScreen/SetPic.jsx';
 import SetDetail from './screens/UserSide/ProfileScreen/SetDetail.jsx';
 import UserList from './screens/AdminSide/UserList/UserList.jsx';
 import AdminLoginScreen from './screens/AdminSide/LoginScreen/AdminLoginScreen.jsx';
+import EditUserDetails from './screens/AdminSide/EditUser/EditUserDetails.jsx';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -37,6 +38,8 @@ function App() {
           {/* admin */}
           <Route path='admin-login' element={<AdminLoginScreen />} />
           <Route path='get-list' element={<UserList />} />
+          <Route path='edit-user/:id' element={<EditUserDetails />} />
+
 
           <Route path='/*' element={<ErrorPage />} />
         </Routes>

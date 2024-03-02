@@ -54,8 +54,55 @@ const getUserList = asyncHandler(async (req, res) => {
     }
 })
 
+const getUserById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(400).json({ message: "User not found" });
+    }
+})
+const updateUser = asyncHandler(async (req, res) => {
+    const { name, email, password, pic } = req.body;
+    const user = await User.findById(req.params.id);
+    if (user) {
+        user.name = name || user.name;
+        user.email = email || user.email;
+        user.pic = pic || user.pic;
+
+        if (password) {
+            user.password = password;
+        }
+        const updateUser = await user.save();
+        res.json({
+            _id: updateUser._id,
+            name: updateUser.name,
+            email: updateUser.email,
+            pic: updateUser.pic,
+            token: generateTokenForAdmin(updateUser._id)
+        })
+    } else {
+        res.status(404);
+        throw new Error('User Not Found!');
+    }
+})
+
+const deleteUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+        await User.deleteOne({ _id: req.params.id });
+        res.json({ message: 'user removed!' });
+    } else {
+        res.status(404);
+        throw new Error({ message: 'user not found!' });
+    }
+})
+
 module.exports = {
     registerAdmin,
     loginAdmin,
-    getUserList
+    getUserList,
+    getUserById,
+    updateUser,
+    deleteUser
 }
