@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile } from '../../../actions/userActions'
+import Header from '../../../Components/Header/Header'
 
 function SetPassword() {
     const [password, setPassword] = useState('');
@@ -34,6 +35,7 @@ function SetPassword() {
     }
     return (
         <div>
+            <Header />
             <MainScreen title='Create New password'>
                 <Container>
                     <div className="loginContainer container w-50 m-auto shadow">

@@ -10,13 +10,15 @@ import Loading from '../../../Components/Loading'
 import ErrorMessage from '../../../Components/ErrorMessage'
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
+import Header from '../../../Components/Header/Header'
 
 
 
-const MyNotes = ({ search }) => {
+const MyNotes = () => {
+    const [search, setSearch] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    
+
     const noteList = useSelector((state) => state.noteList);
     const userLogin = useSelector((state) => state.userLogin);
     const noteCreate = useSelector((state) => state.noteCreate);
@@ -38,6 +40,7 @@ const MyNotes = ({ search }) => {
     }
     return (
         <>
+            <Header setSearch={setSearch} />
             <MainScreen title={`Welcome back ${userInfo?.name}`} className='px-5 mx-5 shadow'>
                 <Link to='/createnote'>
                     <Button className='create-btn' style={{ marginLeft: 10, marginBottom: 6 }} size='lg'>Create New Note</Button>

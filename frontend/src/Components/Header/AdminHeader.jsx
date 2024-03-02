@@ -10,45 +10,43 @@ import {
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../actions/userActions";
+import { adminLogout } from "../../actions/adminAction";
 
-function Header({ setSearch }) {
+function AdminHeader(props) {
     const dispatch = useDispatch();
-    const userLogin = useSelector(state => state.userLogin);
-    const { userInfo } = userLogin;
-    const navigate = useNavigate();
+    const adminLogin = useSelector(state => state.adminLogin);
+    const { adminInfo } = adminLogin;
     const logoutHandler = () => {
         try {
-            dispatch(logout());
-            navigate('/');
+            dispatch(adminLogout());
         } catch (error) {
             console.log(error)
         }
     }
     return (
-        <Navbar collapseOnSelect expand="lg" bg="primary" className="header-cute" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
             <Container>
-                <Navbar.Brand className="fs-2"> <Link to='/'>My <span className="text-dark fw-bold">Note</span></Link></Navbar.Brand>
+                <Navbar.Brand className="fs-2"> <Link to='/get-list'>ADMIN <span className="text-dark fw-bold">PANAL</span></Link></Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="m-auto">
-                        {setSearch && <Form inline>
-                            <FormControl
+                        <Form inline>
+                            {props.setSearch && <FormControl
                                 type="text"
                                 placeholder="Search"
                                 className="mr-sm-2"
-                                onChange={(e) => setSearch(e.target.value)}
-                            />
-                        </Form>}
+                                onChange={(e) => props.setSearch(e.target.value)}
+                            />}
 
+                        </Form>
                     </Nav>
                     {
-                        userInfo ? (<Nav>
-                            <Nav.Link> <Link to='/mynotes'>My Notes</Link></Nav.Link>
-                            <NavDropdown title={userInfo?.name} id="collasible-nav-dropdown" >
-                                <NavDropdown.Item href="/profile">
-                                    <Link to='/profile'>My Profile</Link>
+                        adminInfo ? (<Nav>
+                            <Nav.Link> <Link to='/add-user'>Add user</Link></Nav.Link>
+                            <NavDropdown title={adminInfo?.name} id="collasible-nav-dropdown" >
+                                <NavDropdown.Item href="#">
+                                    Profile
                                 </NavDropdown.Item>
 
                                 <NavDropdown.Divider />
@@ -56,7 +54,7 @@ function Header({ setSearch }) {
                                     Logout
                                 </NavDropdown.Item>
                             </NavDropdown>
-                        </Nav>) : (<Nav><Nav.Link><Link to='/login'>Login</Link></Nav.Link></Nav>)
+                        </Nav>) : (<Nav><Nav.Link><Link to='/admin-login'>Login</Link></Nav.Link></Nav>)
                     }
 
                 </Navbar.Collapse>
@@ -65,4 +63,4 @@ function Header({ setSearch }) {
     );
 }
 
-export default Header;
+export default AdminHeader;

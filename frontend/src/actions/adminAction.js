@@ -3,6 +3,7 @@ import {
     ADMIN_LOGIN_FAIL,
     ADMIN_LOGIN_REQUEST,
     ADMIN_LOGIN_SUCCESS,
+    ADMIN_LOGOUT,
     USER_DELETE_FAILURE,
     USER_DELETE_REQUEST,
     USER_DELETE_SUCCESS,
@@ -98,10 +99,15 @@ const updateUserDetails = ({ id, name, email, password, pic }) => async (dispatc
         dispatch({ type: USER_EDIT_FAILURE, payload: message });
     }
 }
+const adminLogout = () => async (dispatch) => {
+    localStorage.removeItem("adminInfo");
+    dispatch({ type: ADMIN_LOGOUT });
+}
 
 export {
     LoginAdmin,
     getUserList,
     deleteUser,
-    updateUserDetails
+    updateUserDetails,
+    adminLogout
 }

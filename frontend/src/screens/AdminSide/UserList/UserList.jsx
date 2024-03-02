@@ -1,12 +1,14 @@
-import React, { useEffect, useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import AdminUserCard from '../../../Components/admin/AdminUserCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getUserList } from '../../../actions/adminAction';
 import ErrorMessage from '../../../Components/ErrorMessage';
 import Loading from '../../../Components/Loading';
+import AdminHeader from '../../../Components/Header/AdminHeader';
 
 function UserList() {
+    const [search, setSearch] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const adminLogin = useSelector((state) => state.adminLogin);
@@ -23,25 +25,28 @@ function UserList() {
         dispatch(getUserList());
     }, [deleteSuccess, adminInfo, userInfo]);
     return (
-        <div className="container">
-            <div className="main-body">
+        <>
+            <AdminHeader setSearch={setSearch} />
+            <div className="container">
+                <div className="main-body">
 
-                <nav aria-label="breadcrumb" className="main-breadcrumb">
-                    admin panal
-                </nav>
-                {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
-                {deletionError && <ErrorMessage variant='danger'>{deletionError}</ErrorMessage>}
-                {loading && <Loading />}
-                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
-                    {users?.map(user => {
-                        return (
-                            <AdminUserCard userDetail={user} key={user._id} />
-                        )
-                    })}
+                    <nav aria-label="breadcrumb" className="main-breadcrumb">
+                        admin panal
+                    </nav>
+                    {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
+                    {deletionError && <ErrorMessage variant='danger'>{deletionError}</ErrorMessage>}
+                    {loading && <Loading />}
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
+                        {users?.filter(item => item.name.toLowerCase().includes(search.toLowerCase())).map(user => {
+                            return (
+                                <AdminUserCard userDetail={user} key={user._id} />
+                            )
+                        })}
 
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

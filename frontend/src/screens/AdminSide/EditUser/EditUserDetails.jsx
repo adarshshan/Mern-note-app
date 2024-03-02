@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { updateUserDetails } from '../../../actions/adminAction'
+import AdminHeader from '../../../Components/Header/AdminHeader'
 
 function EditUserDetails() {
     const [name, setName] = useState('');
@@ -15,6 +16,7 @@ function EditUserDetails() {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [pic, setPic] = useState('');
     const [picMessage, setPicMessage] = useState('');
+    
 
     const navigate = useNavigate();
 
@@ -65,81 +67,84 @@ function EditUserDetails() {
         navigate(-1);
     }
     return (
-        <MainScreen title='EDIT DETAILS' >
-            <div className="loginContainer container w-50 m-auto shadow">
-                {/* {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        <>
+            <AdminHeader />
+            <MainScreen title='EDIT DETAILS' >
+                <div className="loginContainer container w-50 m-auto shadow">
+                    {/* {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                 {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
                 {loading && <Loading />} */}
-                <Row className='p-3'>
-                    <Col>
-                        <Form onSubmit={submitHandler}>
-                            <Form.Group >
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control
-                                    type="name"
-                                    value={name}
-                                    placeholder="Enter name"
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                            </Form.Group>
+                    <Row className='p-3'>
+                        <Col>
+                            <Form onSubmit={submitHandler}>
+                                <Form.Group >
+                                    <Form.Label>Name</Form.Label>
+                                    <Form.Control
+                                        type="name"
+                                        value={name}
+                                        placeholder="Enter name"
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
+                                </Form.Group>
 
-                            <Form.Group >
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    value={email}
-                                    placeholder="Enter email"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </Form.Group>
+                                <Form.Group >
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control
+                                        type="email"
+                                        value={email}
+                                        placeholder="Enter email"
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                </Form.Group>
 
-                            <Form.Group>
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    value={password}
-                                    placeholder="Password"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        value={password}
+                                        placeholder="Password"
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                </Form.Group>
 
-                            <Form.Group >
-                                <Form.Label>Confirm Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    value={confirmPassword}
-                                    placeholder="Confirm Password"
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                />
-                            </Form.Group>
+                                <Form.Group >
+                                    <Form.Label>Confirm Password</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        value={confirmPassword}
+                                        placeholder="Confirm Password"
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                    />
+                                </Form.Group>
 
-                            {picMessage && (
-                                <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-                            )}
-                            <Form.Group>
-                                <Form.Label>Profile Picture</Form.Label>
-                                <Form.Control id="custom-file"
-                                    type="file"
-                                    onChange={(e) => postDetails(e.target.files[0])}
-                                    label="upload Profile Picture"
-                                    custom />
-                            </Form.Group>
+                                {picMessage && (
+                                    <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+                                )}
+                                <Form.Group>
+                                    <Form.Label>Profile Picture</Form.Label>
+                                    <Form.Control id="custom-file"
+                                        type="file"
+                                        onChange={(e) => postDetails(e.target.files[0])}
+                                        label="upload Profile Picture"
+                                        custom />
+                                </Form.Group>
 
-                            <Button variant="primary mt-2" type="submit">
-                                Register
-                            </Button>
-                        </Form>
-                    </Col>
-                    <Col>
-                        <img className='mt-3' src={pic} alt="///" style={{
-                            height: '220px',
-                            width: '200px'
-                        }} />
-                    </Col>
-                </Row>
+                                <Button variant="primary mt-2" type="submit">
+                                    Register
+                                </Button>
+                            </Form>
+                        </Col>
+                        <Col>
+                            <img className='mt-3' src={pic} alt="///" style={{
+                                height: '220px',
+                                width: '200px'
+                            }} />
+                        </Col>
+                    </Row>
 
-            </div>
-        </MainScreen>
+                </div>
+            </MainScreen>
+        </>
     )
 }
 

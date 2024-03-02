@@ -7,6 +7,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile } from '../../../actions/userActions'
+import Header from '../../../Components/Header/Header'
 
 function SetDetail() {
     const [name, setName] = useState('');
@@ -41,44 +42,47 @@ function SetDetail() {
     }
 
     return (
-        <MainScreen title='EDIT DETAILS'>
-            <Container >
-                <div className="loginContainer container px-5 w-50 m-auto shadow">
-                    {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
-                    {loading && <Loading />}
-                    <Form onSubmit={submitHandler}>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                value={name}
-                                placeholder="Enter password"
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </Form.Group>
+        <>
+            <Header />
+            <MainScreen title='EDIT DETAILS'>
+                <Container >
+                    <div className="loginContainer container px-5 w-50 m-auto shadow">
+                        {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
+                        {loading && <Loading />}
+                        <Form onSubmit={submitHandler}>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    value={name}
+                                    placeholder="Enter password"
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                value={email}
-                                placeholder="Email"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </Form.Group>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    value={email}
+                                    placeholder="Email"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </Form.Group>
 
-                        <Button variant="primary mt-2" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                    <Row className="py-3">
-                        <Col>
-                            <Button onClick={() => navigate(-1)}><IoMdArrowRoundBack /></Button>
-                        </Col>
-                    </Row>
-                </div>
-            </Container>
-        </MainScreen>
+                            <Button variant="primary mt-2" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
+                        <Row className="py-3">
+                            <Col>
+                                <Button onClick={() => navigate(-1)}><IoMdArrowRoundBack /></Button>
+                            </Col>
+                        </Row>
+                    </div>
+                </Container>
+            </MainScreen>
+        </>
     )
 }
 

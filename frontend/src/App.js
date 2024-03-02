@@ -19,10 +19,9 @@ import AdminLoginScreen from './screens/AdminSide/LoginScreen/AdminLoginScreen.j
 import EditUserDetails from './screens/AdminSide/EditUser/EditUserDetails.jsx';
 
 function App() {
-  const [search, setSearch] = useState('');
   return (
     <>
-      <Header setSearch={setSearch} />
+      {/* <Header setSearch={setSearch} /> */}
       <main>
         <Routes>
           <Route path='/' element={<LandingPage />} exact />
@@ -34,7 +33,7 @@ function App() {
           <Route path='/register' element={<RegisterScreen />} />
           <Route path='/createnote' element={<CreateNote />} />
           <Route path='/note/:id' element={<SingleScreen />} />
-          <Route path='/mynotes' element={<MyNotes search={search} />} />
+          <Route path='/mynotes' element={<MyNotes />} />
           {/* admin */}
           <Route path='admin-login' element={<AdminLoginScreen />} />
           <Route path='get-list' element={<UserList />} />

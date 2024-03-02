@@ -7,6 +7,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { updateProfile } from '../../../actions/userActions'
+import Header from '../../../Components/Header/Header'
 
 function SetPic() {
     const [pic, setPic] = useState('');
@@ -61,36 +62,39 @@ function SetPic() {
         }
     }
     return (
-        <MainScreen title='Update photo'>
-            <Container>
-                <div className="loginContainer container w-50 m-auto shadow">
-                    {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
-                    {loading && <Loading />}
-                    <img style={{ width: '50%', margin: 'auto' }} src={pic} alt="///" />
-                    <Form onSubmit={submitHandler}>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type="file"
-                                placeholder="Enter password"
-                                onChange={(e) => postDetails(e.target.files[0])}
-                            />
-                        </Form.Group>
-                        {picMessage && (
-                            <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-                        )}
-                        <Button variant="primary mt-2" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                    <Row className="py-3">
-                        <Col>
-                            <Button onClick={() => navigate(-1)}><IoMdArrowRoundBack /></Button>
-                        </Col>
-                    </Row>
-                </div>
-            </Container>
-        </MainScreen>
+        <>
+            <Header />
+            <MainScreen title='Update photo'>
+                <Container>
+                    <div className="loginContainer container w-50 m-auto shadow">
+                        {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
+                        {loading && <Loading />}
+                        <img style={{ width: '50%', margin: 'auto' }} src={pic} alt="///" />
+                        <Form onSubmit={submitHandler}>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="file"
+                                    placeholder="Enter password"
+                                    onChange={(e) => postDetails(e.target.files[0])}
+                                />
+                            </Form.Group>
+                            {picMessage && (
+                                <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+                            )}
+                            <Button variant="primary mt-2" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
+                        <Row className="py-3">
+                            <Col>
+                                <Button onClick={() => navigate(-1)}><IoMdArrowRoundBack /></Button>
+                            </Col>
+                        </Row>
+                    </div>
+                </Container>
+            </MainScreen>
+        </>
     )
 }
 

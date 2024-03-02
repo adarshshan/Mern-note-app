@@ -19,8 +19,10 @@ function AdminUserCard({ userDetail }) {
     }
     return (
         <div className="col mb-3">
-            <div className="card">
-                <img src="https://www.bootdey.com/image/340x120/FFB6C1/000000" alt="Cover" className="card-img-top" />
+            <div className="card shadow">
+                <img src="https://about.canva.com/wp-content/uploads/sites/8/2019/05/light-blue.png" alt="Cover" style={{
+                    height:'100px'
+                }} className="card-img-top" />
                 <div className="card-body text-center">
                     <img src={userDetail.pic} style={{ width: '100px', height: '130px', marginTop: '-65px' }} alt="User" className="img-fluid img-thumbnail rounded-circle border-0 mb-3" />
                     <div className="d-flex justify-content-between">
