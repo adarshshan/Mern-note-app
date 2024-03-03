@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import Loading from '../../../Components/Loading';
 import { updateNote } from '../../../actions/noteActions';
 import axios from 'axios';
+import Header from '../../../Components/Header/Header';
 
 function SingleScreen() {
     const [title, setTitle] = useState('');
@@ -55,69 +56,72 @@ function SingleScreen() {
         setCategory("");
     }
     return (
-        <MainScreen title='Edit note'>
-            <Container className='px-5 shadow'>
-                <Card className='shadow'>
-                    <Card.Header>Create a new Note</Card.Header>
-                    <Card.Body>
-                        <Form onSubmit={submitHandler}>
-                            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-                            <Form.Group controlId="title">
-                                <Form.Label>Title</Form.Label>
-                                <Form.Control
-                                    type="title"
-                                    value={title}
-                                    placeholder="Enter the title"
-                                    onChange={(e) => setTitle(e.target.value)}
-                                />
-                            </Form.Group>
+        <>
+            <Header />
+            <MainScreen title='Edit note'>
+                <Container className='px-5 shadow'>
+                    <Card className='shadow'>
+                        <Card.Header>Create a new Note</Card.Header>
+                        <Card.Body>
+                            <Form onSubmit={submitHandler}>
+                                {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                                <Form.Group controlId="title">
+                                    <Form.Label>Title</Form.Label>
+                                    <Form.Control
+                                        type="title"
+                                        value={title}
+                                        placeholder="Enter the title"
+                                        onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                </Form.Group>
 
-                            <Form.Group controlId="content">
-                                <Form.Label>Content</Form.Label>
-                                <Form.Control
-                                    as="textarea"
-                                    value={content}
-                                    placeholder="Enter the content"
-                                    rows={4}
-                                    onChange={(e) => setContent(e.target.value)}
-                                />
-                            </Form.Group>
-                            {content && (
-                                <Card>
-                                    <Card.Header>Note Preview</Card.Header>
-                                    <Card.Body>
-                                        <ReactMarkdown>{content}</ReactMarkdown>
-                                    </Card.Body>
-                                </Card>
-                            )}
+                                <Form.Group controlId="content">
+                                    <Form.Label>Content</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        value={content}
+                                        placeholder="Enter the content"
+                                        rows={4}
+                                        onChange={(e) => setContent(e.target.value)}
+                                    />
+                                </Form.Group>
+                                {content && (
+                                    <Card>
+                                        <Card.Header>Note Preview</Card.Header>
+                                        <Card.Body>
+                                            <ReactMarkdown>{content}</ReactMarkdown>
+                                        </Card.Body>
+                                    </Card>
+                                )}
 
-                            <Form.Group controlId="content">
-                                <Form.Label>Category</Form.Label>
-                                <Form.Control
-                                    type="content"
-                                    value={category}
-                                    placeholder="Enter the Category"
-                                    onChange={(e) => setCategory(e.target.value)}
-                                />
-                            </Form.Group>
-                            {loading && success && <Loading size={50} />}
-                            <div className='mt-3'>
-                                <Button type="submit" variant="primary">
-                                    Save Changes
-                                </Button>
-                                <Button className="mx-2" onClick={resetHandler} variant="danger">
-                                    Reset Feilds
-                                </Button>
-                            </div>
-                        </Form>
-                    </Card.Body>
+                                <Form.Group controlId="content">
+                                    <Form.Label>Category</Form.Label>
+                                    <Form.Control
+                                        type="content"
+                                        value={category}
+                                        placeholder="Enter the Category"
+                                        onChange={(e) => setCategory(e.target.value)}
+                                    />
+                                </Form.Group>
+                                {loading && success && <Loading size={50} />}
+                                <div className='mt-3'>
+                                    <Button type="submit" variant="primary">
+                                        Save Changes
+                                    </Button>
+                                    <Button className="mx-2" onClick={resetHandler} variant="danger">
+                                        Reset Feilds
+                                    </Button>
+                                </div>
+                            </Form>
+                        </Card.Body>
 
-                    <Card.Footer className="text-muted">
-                        Creating on - {date.toString().substring(0, 10)}
-                    </Card.Footer>
-                </Card>
-            </Container>
-        </MainScreen>
+                        <Card.Footer className="text-muted">
+                            Creating on - {date.toString().substring(0, 10)}
+                        </Card.Footer>
+                    </Card>
+                </Container>
+            </MainScreen>
+        </>
     )
 }
 

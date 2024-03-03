@@ -69,10 +69,11 @@ function SetPic() {
                     <div className="loginContainer container w-50 m-auto shadow">
                         {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
                         {loading && <Loading />}
-                        <img style={{ width: '50%', margin: 'auto' }} src={pic} alt="///" />
+                        <div className='d-flex justify-content-center'>
+                            <img style={{ width: '50%', }} src={pic} alt="///" />
+                        </div>
                         <Form onSubmit={submitHandler}>
                             <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Password</Form.Label>
                                 <Form.Control
                                     type="file"
                                     placeholder="Enter password"
