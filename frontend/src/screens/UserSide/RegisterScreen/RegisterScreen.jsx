@@ -7,15 +7,18 @@ import ErrorMessage from '../../../Components/ErrorMessage'
 import Loading from '../../../Components/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../../actions/userActions';
+import { useRegisterState } from '../../../costomHooks';
 
 function RegisterScreen() {
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [pic, setPic] = useState('https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [message, setMessage] = useState(null);
-    const [picMessage, setPicMessage] = useState(null);
+    const [
+        email, setEmail,
+        name, setName,
+        pic, setPic,
+        password, setPassword,
+        confirmPassword, setConfirmPassword,
+        message, setMessage,
+        picMessage, setPicMessage
+    ] = useRegisterState();
 
     const navigate = useNavigate();
 

@@ -19,11 +19,13 @@ function UserList() {
     const { loading, users, error } = getUserLis;
 
     const deleteUse = useSelector(state => state.deleteUser);
+    const editUser = useSelector(state => state.editUser);
     const { success: deleteSuccess, loading: deleteLoading, error: deletionError } = deleteUse;
+    const { success: updateSuccess } = editUser;
     useEffect(() => {
         if (!adminInfo) navigate('/admin-login');
         dispatch(getUserList());
-    }, [deleteSuccess, adminInfo, userInfo]);
+    }, [deleteSuccess, updateSuccess, adminInfo, userInfo]);
     return (
         <>
             <AdminHeader setSearch={setSearch} />

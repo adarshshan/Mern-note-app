@@ -9,11 +9,13 @@ import Loading from '../../../Components/Loading';
 import { updateNote } from '../../../actions/noteActions';
 import axios from 'axios';
 import Header from '../../../Components/Header/Header';
+import { useNoteHook } from '../../../costomHooks';
 
 function SingleScreen() {
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [category, setCategory] = useState('');
+    const [
+        title, setTitle,
+        content, setContent,
+        category, setCategory] = useNoteHook();
     const [date, setDate] = useState('');
 
     const { id } = useParams();
