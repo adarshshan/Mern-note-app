@@ -1,9 +1,10 @@
 import { legacy_createStore, combineReducers, applyMiddleware } from 'redux';
 import { thunk } from 'redux-thunk'
+import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { userLoginReducer, userProfileReducer, userRegisterReducer } from './reducers/userReducers';
 import { noteCreateReducer, noteDeleteReducer, noteListReducer, noteUpdateReducer } from './reducers/noteReducer';
-import { adminLoginReducer, editUserReducer, userDeleteReducer, userListReducer } from './reducers/adminReducer';
+import { adminLoginReducer, editUserReducer, userAddReducer, userDeleteReducer, userListReducer } from './reducers/adminReducer';
 
 const userInfoFromStorrage = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo")) : null;
@@ -13,6 +14,7 @@ const initialState = {
     userLogin: { userInfo: userInfoFromStorrage },
     adminLogin: { adminInfo: adminInfoFromStorrage },
 }
+
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
@@ -25,10 +27,11 @@ const reducer = combineReducers({
     adminLogin: adminLoginReducer,
     getUserList: userListReducer,
     deleteUser: userDeleteReducer,
-    editUser: editUserReducer
+    editUser: editUserReducer,
+    addUser: userAddReducer
 })
 
-const middleware = [thunk];
+const middleware = [thunk, logger];
 
 const store = legacy_createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
 

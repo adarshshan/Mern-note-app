@@ -3,6 +3,9 @@ import {
     ADMIN_LOGIN_REQUEST,
     ADMIN_LOGIN_SUCCESS,
     ADMIN_LOGOUT,
+    USER_ADD_FAILURE,
+    USER_ADD_REQUEST,
+    USER_ADD_SUCCESS,
     USER_DELETE_FAILURE,
     USER_DELETE_REQUEST,
     USER_DELETE_SUCCESS,
@@ -116,10 +119,37 @@ const editUserReducer = (state = {}, action) => {
         console.log(error)
     }
 }
+const userAddReducer = (state = {}, action) => {
+    try {
+        switch (action.type) {
+            case USER_ADD_REQUEST:
+                return {
+                    loading: true
+                }
+            case USER_ADD_SUCCESS:
+                return {
+                    loading: false,
+                    success: true,
+                    userDetail: action.payload
+                }
+            case USER_ADD_FAILURE:
+                return {
+                    loading: false,
+                    error: action.payload,
+                    success: false
+                }
+            default:
+                return state;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export {
     adminLoginReducer,
     userListReducer,
     userDeleteReducer,
-    editUserReducer
+    editUserReducer,
+    userAddReducer
 };

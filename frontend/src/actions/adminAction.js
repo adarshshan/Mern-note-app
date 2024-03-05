@@ -4,6 +4,9 @@ import {
     ADMIN_LOGIN_REQUEST,
     ADMIN_LOGIN_SUCCESS,
     ADMIN_LOGOUT,
+    USER_ADD_FAILURE,
+    USER_ADD_REQUEST,
+    USER_ADD_SUCCESS,
     USER_DELETE_FAILURE,
     USER_DELETE_REQUEST,
     USER_DELETE_SUCCESS,
@@ -99,6 +102,25 @@ const updateUserDetails = ({ id, name, email, password, pic }) => async (dispatc
         dispatch({ type: USER_EDIT_FAILURE, payload: message });
     }
 }
+const addNewUser = (user) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: USER_ADD_REQUEST });
+        const { adminLogin: { adminInfo } } = getState();
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${adminInfo?.token}`
+            }
+        }
+        const { data } = await axios.post(`/api/admin/add-user`, user, config);
+        console.log(data);
+        dispatch({ type: USER_ADD_SUCCESS, payload: data });
+    } catch (error) {
+        const message = error.response && error.response.data.message
+            ? error.response.data.message : error.message;
+        dispatch({ type: USER_ADD_FAILURE, payload: message });
+    }
+}
 const adminLogout = () => async (dispatch) => {
     localStorage.removeItem("adminInfo");
     dispatch({ type: ADMIN_LOGOUT });
@@ -109,5 +131,6 @@ export {
     getUserList,
     deleteUser,
     updateUserDetails,
-    adminLogout
+    adminLogout,
+    addNewUser
 }

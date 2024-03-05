@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv');
 const connectDb = require('./config/db')
 const cors = require('cors');
+const path = require('path');
 
 const userRoutes = require('./Routes/userRouter');
 const noteRoutes = require('./Routes/noteRoutes');
@@ -24,6 +25,21 @@ app.use('/api/users', userRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/admin', adminRoutes);
 
+//............Deployment...........
+
+// const __dirname1 = path.resolve()
+// if (process.env.NODE_ENV === "development") {
+//     app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+//     app.get("*", (req, res) => {
+//         res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
+//     })
+// } else {
+//     app.get("/", (req, res) => {
+//         res.send("api is running successsfully");
+//     })
+// }
+//............Deployment...........
 
 
 app.use(notFound);

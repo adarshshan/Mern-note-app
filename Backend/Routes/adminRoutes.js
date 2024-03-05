@@ -4,7 +4,8 @@ const { registerAdmin,
     getUserList,
     getUserById,
     updateUser,
-    deleteUser } = require('../Controllers/adminController');
+    deleteUser,
+    addedUser } = require('../Controllers/adminController');
 const { adminProtect } = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get('/user-list', getUserList);
 router.get('/:id', getUserById)
     .put('/:id', adminProtect, updateUser)
     .delete('/:id', adminProtect, deleteUser)
+router.post('/add-user', adminProtect, addedUser);
 
 module.exports = router;

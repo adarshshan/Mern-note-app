@@ -27,6 +27,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
         throw new Error('Error occured');
     }
 })
+
 const loginAdmin = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email });
@@ -62,6 +63,7 @@ const getUserById = asyncHandler(async (req, res) => {
         res.status(400).json({ message: "User not found" });
     }
 })
+
 const updateUser = asyncHandler(async (req, res) => {
     const { name, email, password, pic } = req.body;
     const user = await User.findById(req.params.id);
@@ -97,6 +99,32 @@ const deleteUser = asyncHandler(async (req, res) => {
         throw new Error({ message: 'user not found!' });
     }
 })
+const addedUser = asyncHandler(async (req, res) => {
+    const { name, email, password, pic } = req.body;
+    const userExist = await User.findOne({ email });
+    if (userExist) {
+        res.status(400);
+        throw new Error('User Already exists')
+    }
+    const user = await User.create({
+        name,
+        email,
+        password,
+        pic,
+    })
+    if (user) {
+        res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            pic: user.pic,
+            token: generateTokenForAdmin(user._id)
+        })
+    } else {
+        res.status(400);
+        throw new Error('Error occured');
+    }
+})
 
 module.exports = {
     registerAdmin,
@@ -104,5 +132,6 @@ module.exports = {
     getUserList,
     getUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    addedUser
 }

@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './Components/Footer/Footer';
+// import AddUser from './screens/AdminSide/AddUser/AddUser.jsx';
 // import LandingPage from './screens/UserSide/LandingPage/LandingPage';
 // import MyNotes from './screens/UserSide/MyNotes/MyNotes.jsx';
 // import LoginScreen from './screens/UserSide/LoginScreen/LoginScreen.jsx';
@@ -31,6 +32,7 @@ const SetDetail = lazy(() => import('./screens/UserSide/ProfileScreen/SetDetail.
 const UserList = lazy(() => import('./screens/AdminSide/UserList/UserList.jsx'));
 const AdminLoginScreen = lazy(() => import('./screens/AdminSide/LoginScreen/AdminLoginScreen.jsx'));
 const EditUserDetails = lazy(() => import('./screens/AdminSide/EditUser/EditUserDetails.jsx'));
+const AddUser = lazy(() => import('./screens/AdminSide/AddUser/AddUser.jsx'));
 
 function App() {
   return (
@@ -51,6 +53,7 @@ function App() {
           <Route path='admin-login' element={<Suspense fallback={<span class="loader"></span>}><AdminLoginScreen /></Suspense>} />
           <Route path='get-list' element={<Suspense fallback={<span class="loader"></span>}><UserList /></Suspense>} />
           <Route path='edit-user/:id' element={<Suspense fallback={<span class="loader"></span>}><EditUserDetails /></Suspense>} />
+          <Route path='add-user' element={<Suspense fallback={<span class="loader"></span>}><AddUser /></Suspense>} />
 
 
           <Route path='/*' element={<Suspense fallback={<span class="loader"></span>}><ErrorPage /></Suspense>} />
