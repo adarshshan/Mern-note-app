@@ -69,7 +69,7 @@ function AddUser() {
         <>
             <AdminHeader />
             <MainScreen title='Add New User' >
-                <div className="loginContainer container w-50 m-auto shadow">
+                <div className="loginContainer container w-50 m-auto shadow p-4">
                     {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                     {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
                     {loading && <Loading />}

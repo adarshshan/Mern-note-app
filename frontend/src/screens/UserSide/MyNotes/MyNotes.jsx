@@ -29,9 +29,9 @@ const MyNotes = () => {
     const { success: successCreate } = noteCreate;
     const { success: successUpdate } = noteUpdate;
     const { success: successDelete } = noteDelete;
-    useLayoutEffect(() => {
-        dispatch(listNotes());
+    useEffect(() => {
         if (!userInfo) navigate('/');
+        dispatch(listNotes());
     }, [dispatch, userInfo, successCreate, deleteNote, successUpdate, successDelete]);
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure ?')) {

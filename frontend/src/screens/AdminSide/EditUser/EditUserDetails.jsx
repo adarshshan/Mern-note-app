@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MainScreen from '../../../Components/MainScreen'
 import ErrorMessage from '../../../Components/ErrorMessage'
-import Loading from '../../../Components/Loading'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -130,7 +129,7 @@ function EditUserDetails() {
                                 </Form.Group>
 
                                 <Button variant="primary mt-2" type="submit">
-                                    Register
+                                    save changes
                                 </Button>
                             </Form>
                         </Col>

@@ -48,7 +48,7 @@ const noteDeleteReducer = (state = {}, action) => {
             case NOTES_DELETE_SUCCESS:
                 return {
                     loading: false,
-                    success:true
+                    success: true
                 }
             case NOTES_DELETE_FAIL:
                 return {
@@ -77,7 +77,8 @@ const noteCreateReducer = (state = {}, action) => {
             case NOTES_CREATE_FAIL:
                 return {
                     loading: false,
-                    error: action.payload
+                    error: action.payload,
+                    success: false
                 }
             default:
                 return state;

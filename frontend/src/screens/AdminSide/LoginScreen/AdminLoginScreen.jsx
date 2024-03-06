@@ -42,7 +42,7 @@ function AdminLoginScreen() {
         <>
             <MainScreen title='Admin Login'>
                 <Container>
-                    <div className="loginContainer container w-50 m-auto shadow">
+                    <div className="loginContainer container w-50 m-auto shadow p-4">
                         {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
                         {loading && <Loading />}
                         <Form onSubmit={submitHandler}>
@@ -70,11 +70,6 @@ function AdminLoginScreen() {
                                 Submit
                             </Button>
                         </Form>
-                        <Row className="py-3">
-                            <Col>
-                                New Customer ? <Link to="/register" className='text-primary'>Register Here</Link>
-                            </Col>
-                        </Row>
                     </div>
                 </Container>
             </MainScreen>

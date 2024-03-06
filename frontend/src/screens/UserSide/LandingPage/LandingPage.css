@@ -16,7 +16,8 @@
     min-height: 93vh;
     display: flex;
     align-items: center;
-    background-image: url("../background1.jpg");
+    /* background-image: url("../background1.jpg"); */
+    background-image: url("../mike-tinnion-3ym6i13Y9LU-unsplash.jpg");
     background-position: center;
     background-size: cover;
 }

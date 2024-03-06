@@ -35,7 +35,7 @@ function UserList() {
                 <div className="main-body">
 
                     <nav aria-label="breadcrumb" className="main-breadcrumb">
-                        admin panal
+                        TOTAL USERS ({users?.length})
                     </nav>
                     {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
                     {deletionError && <ErrorMessage variant='danger'>{deletionError}</ErrorMessage>}
