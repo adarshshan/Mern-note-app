@@ -7,15 +7,20 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { updateUserDetails } from '../../../actions/adminAction'
 import AdminHeader from '../../../Components/Header/AdminHeader'
+import { useRegisterState } from '../../../costomHooks'
 
 function EditUserDetails() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [pic, setPic] = useState('');
-    const [picMessage, setPicMessage] = useState('');
-    
+
+    const [
+        email, setEmail,
+        name, setName,
+        pic, setPic,
+        password, setPassword,
+        confirmPassword, setConfirmPassword,
+        message, setMessage,
+        picMessage, setPicMessage
+    ] = useRegisterState();
+
 
     const navigate = useNavigate();
 

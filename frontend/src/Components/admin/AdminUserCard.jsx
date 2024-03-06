@@ -1,6 +1,6 @@
 import React from 'react'
 import { CiEdit } from 'react-icons/ci';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { MdDeleteOutline } from "react-icons/md";
 import { deleteUser } from '../../actions/adminAction';
 import { Link } from 'react-router-dom';
@@ -9,9 +9,6 @@ function AdminUserCard({ userDetail }) {
 
     const dispatch = useDispatch();
 
-    const editHandler = (id) => {
-
-    }
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure ?')) {
             dispatch(deleteUser(id))

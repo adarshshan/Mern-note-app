@@ -2,21 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './Components/Footer/Footer';
-// import AddUser from './screens/AdminSide/AddUser/AddUser.jsx';
-// import LandingPage from './screens/UserSide/LandingPage/LandingPage';
-// import MyNotes from './screens/UserSide/MyNotes/MyNotes.jsx';
-// import LoginScreen from './screens/UserSide/LoginScreen/LoginScreen.jsx';
-// import RegisterScreen from './screens/UserSide/RegisterScreen/RegisterScreen.jsx';
-// import CreateNote from './screens/UserSide/CreateNote/CreateNote.jsx';
-// import SingleScreen from './screens/UserSide/SingleScreen/SingleScreen.jsx';
-// import ErrorPage from './screens/UserSide/ErrorPage/ErrorPage.jsx';
-// import ProProfile from './screens/UserSide/ProfileScreen/ProProfile.jsx';
-// import SetPassword from './screens/UserSide/ProfileScreen/SetPassword.jsx';
-// import SetPic from './screens/UserSide/ProfileScreen/SetPic.jsx';
-// import SetDetail from './screens/UserSide/ProfileScreen/SetDetail.jsx';
-// import UserList from './screens/AdminSide/UserList/UserList.jsx';
-// import AdminLoginScreen from './screens/AdminSide/LoginScreen/AdminLoginScreen.jsx';
-// import EditUserDetails from './screens/AdminSide/EditUser/EditUserDetails.jsx';
+import Sample from './screens/AdminSide/Sample.jsx';
 
 const LandingPage = lazy(() => import('./screens/UserSide/LandingPage/LandingPage'))
 const MyNotes = lazy(() => import('./screens/UserSide/MyNotes/MyNotes.jsx'))
@@ -54,6 +40,7 @@ function App() {
           <Route path='get-list' element={<Suspense fallback={<span class="loader"></span>}><UserList /></Suspense>} />
           <Route path='edit-user/:id' element={<Suspense fallback={<span class="loader"></span>}><EditUserDetails /></Suspense>} />
           <Route path='add-user' element={<Suspense fallback={<span class="loader"></span>}><AddUser /></Suspense>} />
+          <Route path='sample' element={<Suspense fallback={<span class="loader"></span>}><Sample /></Suspense>} />
 
 
           <Route path='/*' element={<Suspense fallback={<span class="loader"></span>}><ErrorPage /></Suspense>} />

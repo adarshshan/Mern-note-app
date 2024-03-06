@@ -6,14 +6,18 @@ import ErrorMessage from '../../../Components/ErrorMessage';
 import Loading from '../../../Components/Loading';
 import { useNavigate } from 'react-router-dom';
 import { updateProfile } from '../../../actions/userActions';
+import { useRegisterState } from '../../../costomHooks';
 
 function ProfileScreen() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [pic, setPic] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [picMessage, setPicMessage] = useState('');
+    const [
+        email, setEmail,
+        name, setName,
+        pic, setPic,
+        password, setPassword,
+        confirmPassword, setConfirmPassword,
+        message, setMessage,
+        picMessage, setPicMessage
+    ] = useRegisterState();
 
     const navigate = useNavigate();
 

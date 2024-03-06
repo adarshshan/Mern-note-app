@@ -71,6 +71,7 @@ const logout = () => async (dispatch) => {
     localStorage.removeItem("userInfo");
     dispatch({ type: USER_LOGOUT });
 }
+
 const updateProfile = (user) => async (dispatch, getState) => {
     try {
         dispatch({ type: USER_UPDATE_REQUEST });
